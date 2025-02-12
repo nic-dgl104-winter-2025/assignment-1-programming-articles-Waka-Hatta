@@ -27,11 +27,11 @@ Moreover, the reviewee may have deeper knowledge of programming than the reviewe
 This becomes particularly challenging when conducting code reviews online rather than in person. In face-to-face discussions, tone of voice, facial expressions, and gestures can help convey respect for the other person. However, when writing comments, reviewers must rely solely on text to communicate their message.
 For example, it is important to carefully phrase comments as follows:
 <div style="border: 2px solid gray; padding: 10px;">
-<span style="color:red">#Bad: </span> “Why did you use threads here when there’s obviously no benefit to be gained from concurrency?”
+<span style="color:red"># NG: </span> “Why did you use threads here when there’s obviously no benefit to be gained from concurrency?”
 </div>
 <br>
 <div style="border: 2px solid gray; padding: 10px;">
-<span style="color:blue">#Good: </span>“The concurrency model here is adding complexity to the system without any actual performance benefit that I can see. Because there’s no performance benefit, it’s best for this code to be single-threaded instead of using multiple threads.” 
+<span style="color:blue"># OK: </span>“The concurrency model here is adding complexity to the system without any actual performance benefit that I can see. Because there’s no performance benefit, it’s best for this code to be single-threaded instead of using multiple threads.” 
 </div>
 (Google, n.d.)
 <br><br>
@@ -47,7 +47,7 @@ The primary requirement is that the code aligns with the functional requirements
 The code should be clean, well-organized, and easy to understand. Check that the logic flows naturally and that comments and documentation are used appropriately. It is also necessary to check that the same process is not being repeated and that magic numbers are not being used. Magic numbers are numbers written directly into the source code, such as in the following example, whose intent and meaning are only known to the writer. 
 
 <div style="border: 2px solid gray; padding: 10px;">
-<span style="color:red">#Bad: Magic number</span> : Constants are written directly<br>
+<span style="color:red"># NG: Magic number</span> : Constants are written directly<br>
 &emsp;&emsp;def calculate_circle_area(radius):<br>
 &emsp;&emsp;return radius * radius * 3.14159 <br>
 </div><br>
@@ -93,7 +93,7 @@ It's important to use more descriptive names and follow the lexical naming conve
 Check for performance issues such as inefficient algorithms and memory leaks. Introduce necessary review loops and recursive functions to ensure they work efficiently and don't introduce unnecessary complexity and resource consumption(Clickup, 2024).<br>
 For example, here is an example of inefficient memory usage due to a large number of string concatenations:<br>
 <div style="border: 2px solid gray; padding: 10px;">
-<span style="color:red">NG :</span><br> public class StringConcatenationExample {<br>
+<span style="color:red"># NG :</span><br> public class StringConcatenationExample {<br>
 &emsp;&emsp;public static void main(String[] args) {<br>
 &emsp;&emsp;&emsp;String result = "";<br>
 &emsp;&emsp;&emsp;for (int i = 0; i < 10000; i++) {<br>
@@ -104,7 +104,7 @@ For example, here is an example of inefficient memory usage due to a large numbe
 }
 </div><br>
 <div style="border: 2px solid gray; padding: 10px;">
-<span style="color:blue"> OK :</span> <br>public class StringBuilderExample {<br>
+<span style="color:blue"># OK :</span> <br>public class StringBuilderExample {<br>
 &emsp;&emsp;public static void main(String[] args) {<br>
 &emsp;&emsp;&emsp;StringBuilder result = new StringBuilder();<br>
 &emsp;&emsp;&emsp;for (int i = 0; i < 10000; i++) {<br>
